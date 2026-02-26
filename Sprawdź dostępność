@@ -1,0 +1,41 @@
+<h2>Sprawdź dostępność usług</h2>
+
+<input type="text" id="city" placeholder="Miejscowość">
+<input type="text" id="street" placeholder="Ulica">
+<input type="text" id="number" placeholder="Nr domu">
+<br><br>
+<button onclick="checkAddress()">Sprawdź</button>
+
+<div id="result" style="margin-top:20px;font-weight:bold;"></div>
+
+<script>
+const addresses = [
+  { city: "Osjaków", street: "Słoneczna", number: "20A", offer: "Światłowód 600Mb/s + TV" },
+  { city: "Sędziejowice", street: "Centralna", number: "15", offer: "Internet 300Mb/s" },
+  { city: "Brody", street: "Główna", number: "7", offer: "Internet + TV + Telefon" },
+  { city: "Kamostek", street: "Wiejska", number: "3", offer: "Światłowód 200Mb/s" },
+  { city: "Dobra", street: "Łódzka", number: "12", offer: "Internet 300Mb/s" },
+  { city: "Nowe Kozuby", street: "Nowowiejska", number: "4", offer: "Światłowód 400Mb/s" },
+  { city: "Pruszków", street: "Polna", number: "9", offer: "Internet + Telefon" },
+  { city: "Kustrzyce", street: "Szkolna", number: "11", offer: "Światłowód 300Mb/s" }
+];
+
+function checkAddress() {
+  const city = document.getElementById("city").value.toLowerCase().trim();
+  const street = document.getElementById("street").value.toLowerCase().trim();
+  const number = document.getElementById("number").value.toLowerCase().trim();
+  const result = document.getElementById("result");
+
+  const found = addresses.find(a =>
+    a.city.toLowerCase() === city &&
+    a.street.toLowerCase() === street &&
+    a.number.toLowerCase() === number
+  );
+
+  if(found){
+    result.innerHTML = "✅ Dostępne usługi: " + found.offer;
+  } else {
+    result.innerHTML = "❌ Brak usług pod tym adresem.";
+  }
+}
+</script>
