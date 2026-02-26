@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ProNet Serwis - Test</title>
+<style>
+body { font-family: Arial; text-align:center; margin-top:50px; }
+input { padding:10px; margin:5px; }
+button { padding:10px 20px; }
+</style>
+</head>
+<body>
+
+<h1>ProNet Serwis</h1>
+<h2>Sprawdź dostępność internetu</h2>
+
+<input type="text" id="city" placeholder="Miejscowość">
+<input type="text" id="street" placeholder="Ulica">
+<input type="text" id="number" placeholder="Nr domu">
+<br>
+<button onclick="check()">Sprawdź</button>
+
+<div id="result"></div>
+
+<script>
+const addresses = [
+  { city: "Osjaków", street: "Słoneczna", number: "20A", offer: "Światłowód 600Mb/s" },
+  { city: "Złoczew", street: "Sieradzka", number: "126", offer: "Internet 300Mb/s" }
+];
+
+function check() {
+  const city = document.getElementById("city").value.toLowerCase();
+  const street = document.getElementById("street").value.toLowerCase();
+  const number = document.getElementById("number").value.toLowerCase();
+  const result = document.getElementById("result");
+
+  const found = addresses.find(a =>
+    a.city.toLowerCase() === city &&
+    a.street.toLowerCase() === street &&
+    a.number.toLowerCase() === number
+  );
+
+  if(found){
+    result.innerHTML = "✅ Oferta: " + found.offer;
+  } else {
+    result.innerHTML = "❌ Brak usług pod tym adresem";
+  }
+}
+</script>
+
+</body>
+</html>
